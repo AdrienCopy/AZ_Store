@@ -1,0 +1,41 @@
+main .div-h1-img {
+  margin: 5% 0;
+  display: flex;
+}
+main .div-h1-img :nth-child(2) {
+  display: flex;
+}
+main .div-h1-img :nth-child(2) img {
+  width: 60%;
+}
+main .div-products {
+  margin: 5% 0;
+}
+main .div-products .products {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+main .div-products .products .product-info {
+  width: 20%;
+}
+main .div-products .products .product-info img {
+  width: 20%;
+}
+main .div-opinion {
+  margin: 5% 0;
+  display: flex;
+  text-align: center;
+}
+main .div-opinion section {
+  margin: 0 auto;
+  width: 30%;
+}
+main .div-opinion section img {
+  border-radius: 100px;
+  height: 80px;
+  margin: 20px;
+}
+main .div-opinion section p {
+  text-align: justify;
+}
