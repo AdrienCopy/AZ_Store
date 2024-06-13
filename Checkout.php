@@ -1,33 +1,107 @@
+<?php 
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
     <script type="module" defer src="./assets/script/script.js"></script>
     <title>AZ Store</title>
 </head>
 <body>
-    <form method="POST" id="form">
-        <label for="first_name">First name: </label>
-        <input type="text" name="first_name" aria-required="true" required><br>
-        <label for="last_name">Last name: </label>
-        <input type="text" name="last_name" aria-required="true" required><br>
-        <label for="email">Email: </label>
-        <input type="text" id="email" name="email" aria-required="true" required><br>
-        <label for="adress">Address: </label>
-        <input type="text" name="adress" aria-required="true" required><br>
-        <label for="city">City: </label>
-        <input type="text" name="city" aria-required="true" required><br>
-        <label for="zip_code">Zip code: </label>
-        <input type="text" name="zip_code" aria-required="true" required><br>
-        <label for="country">Country: </label>
-        <input type="text" name="country" aria-required="true" required><br>
-        <input type="text" name="control" style="display: none;">
+<header>
+        <div class="logo">
+            <p>AZ&#91;store&#93;</p>
+        </div>
+        <div class="nav">
+        <nav>
+            <a href="index.php">Home</a>
+            <a href="">About</a>
+            <a href="">Product</a>
+            <a href="">Contact</a>
+        </nav>
+        </div>
+        <div class="shopping-login">
+            <img src="assets/picture/shopping-cart.svg" alt="image of shopping cart">
+            <p>Login</p>
+        </div>
+</header>
+    <main>
+
+    <form method="POST" id="form" action="">
+        <label for="first_name">First name: </label><br>
+        <input type="text" name="first_name" placeholder="First Name" aria-required="true" required><br>
+        <label for="last_name">Last name: </label><br>
+        <input type="text" name="last_name" placeholder="Last Name" aria-required="true" required><br>
+        <label for="email">Email: </label><br>
+        <input type="text" id="email" name="email" placeholder="Email" aria-required="true" required><br>
+        <label for="adress">Address: </label><br>
+        <input type="text" name="adress" placeholder="Adress" aria-required="true" required><br>
+        <label for="city">City: </label><br>
+        <input type="text" name="city" placeholder="City" aria-required="true" required><br>
+        <label for="zip_code">Zip code: </label><br>
+        <input type="text" id="zipcode" name="zip_code" placeholder="Zip code" aria-required="true" required><br>
+        <label for="country">Country: </label><br>
+        <select name="country" aria-required="true" required>
+            <option disabled selected>Select a country</option>
+            <option value="Albanie">Albanie</option>
+            <option value="Allemagne">Allemagne</option>
+            <option value="Andorre">Andorre</option>
+            <option value="Autriche">Autriche</option>
+            <option value="Belgique">Belgique</option>
+            <option value="Biélorussie">Biélorussie</option>
+            <option value="Bosnie-Herzégovine">Bosnie-Herzégovine</option>
+            <option value="Bulgarie">Bulgarie</option>
+            <option value="Chypre">Chypre</option>
+            <option value="Croatie">Croatie</option>
+            <option value="Danemark">Danemark</option>
+            <option value="Espagne">Espagne</option>
+            <option value="Estonie">Estonie</option>
+            <option value="Finlande">Finlande</option>
+            <option value="France">France</option>
+            <option value="Géorgie">Géorgie</option>
+            <option value="Grèce">Grèce</option>
+            <option value="Hongrie">Hongrie</option>
+            <option value="Irlande">Irlande</option>
+            <option value="Islande">Islande</option>
+            <option value="Italie">Italie</option>
+            <option value="Kosovo">Kosovo</option>
+            <option value="Lettonie">Lettonie</option>
+            <option value="Liechtenstein">Liechtenstein</option>
+            <option value="Lituanie">Lituanie</option>
+            <option value="Luxembourg">Luxembourg</option>
+            <option value="Macédoine du Nord">Macédoine du Nord</option>
+            <option value="Malte">Malte</option>
+            <option value="Moldavie">Moldavie</option>
+            <option value="Monaco">Monaco</option>
+            <option value="Monténégro">Monténégro</option>
+            <option value="Norvège">Norvège</option>
+            <option value="Pays-Bas">Pays-Bas</option>
+            <option value="Pologne">Pologne</option>
+            <option value="Portugal">Portugal</option>
+            <option value="République Tchèque">République Tchèque</option>
+            <option value="Roumanie">Roumanie</option>
+            <option value="Royaume-Uni">Royaume-Uni</option>
+            <option value="Russie">Russie</option>
+            <option value="Saint-Marin">Saint-Marin</option>
+            <option value="Serbie">Serbie</option>
+            <option value="Slovaquie">Slovaquie</option>
+            <option value="Slovénie">Slovénie</option>
+            <option value="Suède">Suède</option>
+            <option value="Suisse">Suisse</option>
+            <option value="Ukraine">Ukraine</option>
+            <option value="Vatican">Vatican</option>
+        </select><br>
+        <input type="text" name="control" style="display: none;"><br>
         <input type="submit" id="button" value="Submit">
     </form>
-
+</main>
 
 <?php 
+
 
 $first_name = "";
 $last_name = "";
@@ -69,16 +143,67 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $zip_code = sanitizeInput($_POST['zip_code']);
             $country = sanitizeInput($_POST['country']);
 
+            if (!ctype_digit($zip_code)) {
+                die("Erreur : the postal code must consist of numbers only");
+            }
+
             $validatedEmail = validateEmail($email);
                 if ($validatedEmail !== false) {
                 $email = $validatedEmail;
             }
             
+            $_SESSION['formData'] = array(
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'email' => $email,
+                'adress' => $adress,
+                'city' => $city,
+                'zip_code' => $zip_code,
+                'country' => $country
+            );
+            profil($first_name, $last_name, $email, $adress, $city, $zip_code, $country);
     }
 }
 
-print_r ($first_name . $last_name . $email . $adress . $city . $zip_code . $country);
-?>
+function profil($first_name, $last_name, $email, $adress, $city, $zip_code, $country) {
+    $db = new SQLite3('bdd.sqlite');
 
+    $query = 'CREATE TABLE IF NOT EXISTS customer (
+        id INTEGER PRIMARY KEY,
+        first_name TEXT,
+        last_name TEXT,
+        email TEXT,
+        adress TEXT,
+        city TEXT,
+        zip_code TEXT,
+        country TEXT
+
+    )';
+
+    $db->exec($query);
+
+    $stmt = $db->prepare('INSERT INTO customer (first_name, last_name, email, adress, city, zip_code, country) VALUES (:first_name, :last_name, :email, :adress, :city, :zip_code, :country)');
+    
+    $stmt->bindValue(':first_name', $first_name, SQLITE3_TEXT);
+    $stmt->bindValue(':last_name', $last_name, SQLITE3_TEXT);
+    $stmt->bindValue(':email', $email, SQLITE3_TEXT);
+    $stmt->bindValue(':adress', $adress, SQLITE3_TEXT);
+    $stmt->bindValue(':city', $city, SQLITE3_TEXT);
+    $stmt->bindValue(':zip_code', $zip_code, SQLITE3_TEXT);
+    $stmt->bindValue(':country', $country, SQLITE3_TEXT);
+
+    $result = $stmt->execute();
+    $db->close();
+    exit();
+}
+?>
+<footer>
+    <nav>
+        <a href="index.php">Home</a>
+        <a href="">About</a>
+        <a href="">Product</a>
+        <a href="">Contact</a>
+    </nav>
+</footer>
 </body>
 </html>
