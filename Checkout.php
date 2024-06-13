@@ -2,6 +2,7 @@
 session_start();
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +31,78 @@ session_start();
         </div>
 </header>
     <main>
+    <table>
+            <tr>
+                <td>image</td>
+                <td>name of product</td>
+                <td>quantity</td>
+                <td>price</td>
+            </tr>
+    <?php
+    function Json($Fichier) {
+        $Fichier = file_get_contents($Fichier);
+        return json_decode($Fichier, true);
+    }
+    function deletePanier($idProduit) {
+        if (isset($_SESSION['panier'][$idProduit])) {
+            unset($_SESSION['panier'][$idProduit]);
+        }
+    }
+    
+    // Vérifier si une suppression est demandée
+    if (isset($_GET['del'])) {
+        $id_del = intval($_GET['del']);
+        deletePanier($id_del);
+    }
+    // Fonction pour afficher le contenu du panier
+    function showPanier($produits) {
+        if (isset($_SESSION['panier']) && !empty($_SESSION['panier'])) {
+            $panier = $_SESSION['panier'];
+            $total = 0;
+            echo "<h1>Basket contents :</h1>";
+            foreach ($panier as $idProduit => $quantite) {
+                if (isset($produits[$idProduit])) {
+                    $nomProduit = htmlspecialchars($produits[$idProduit]['product']);
+                    $prix = $produits[$idProduit]['price'];
+                    $totalParProduit = $prix * $quantite;
+                    $total += $totalParProduit;
+                    
+                    echo "
+                            <tr>
+                                <td><img src='" . htmlspecialchars($produits[$idProduit]['image_url']) . "' alt='" . $nomProduit . "' width='50'></td>
+                                <td>{$nomProduit}</td>
+                                <td>{$quantite}</td>
+                                <td>$" . number_format($prix, 2) . "</td>
+                                <td>$" . number_format($totalParProduit, 2) . "</td>
+                                <td><a href='?del={$idProduit}'>Supprimer</a></td>
+                            </tr>";
+                            
 
+                }
+            }
+            echo "<tr>
+                    <td colspan='4'>Total</td>
+                    <td colspan='2'>$" . number_format($total, 2) . "</td>
+                </tr>";
+        } else {
+            echo "Le panier est vide.";
+        }
+    }
+    
+    // Lire les informations produits depuis le fichier JSON
+    $Fichier = 'assets/json/products.json';
+    $produits = Json($Fichier);
+    
+    // Transformer le tableau en un tableau associatif indexé par idProduit
+    $produitsIndexe = array();
+    foreach ($produits as $produit) {
+        $produitsIndexe[$produit['id']] = $produit;
+    }
+    
+    // Afficher le contenu du panier
+    showPanier($produitsIndexe);
+    ?>
+    </table>
     <form method="POST" id="form" action="">
         <label for="first_name">First name: </label><br>
         <input type="text" name="first_name" placeholder="First Name" aria-required="true" required><br>
@@ -101,8 +173,6 @@ session_start();
 </main>
 
 <?php 
-
-
 $first_name = "";
 $last_name = "";
 $email = "";
@@ -193,6 +263,31 @@ function profil($first_name, $last_name, $email, $adress, $city, $zip_code, $cou
     $stmt->bindValue(':country', $country, SQLITE3_TEXT);
 
     $result = $stmt->execute();
+
+    $order_id = $db->lastInsertRowID();
+
+    // Créez une table pour les articles de la commande
+    $query = 'CREATE TABLE IF NOT EXISTS order_items (
+        id INTEGER PRIMARY KEY,
+        order_id INTEGER,
+        product_id INTEGER,
+        quantity INTEGER,
+        price NUMERIC,
+        FOREIGN KEY(order_id) REFERENCES orders(id)
+    )';
+
+    $db->exec($query);
+
+    // Insérez les articles du panier dans la table order_items
+    foreach ($_SESSION['panier'] as $product_id => $quantity) {
+        $stmt = $db->prepare('INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (:order_id, :product_id, :quantity, :price)');
+        $stmt->bindValue(':order_id', $order_id, SQLITE3_INTEGER);
+        $stmt->bindValue(':product_id', $product_id, SQLITE3_INTEGER);
+        $stmt->bindValue(':quantity', $quantity, SQLITE3_INTEGER);
+        $stmt->bindValue(':price', $produitsIndexe[$product_id]['price'], SQLITE3_FLOAT);
+        $stmt->execute();
+    }
+
     $db->close();
     exit();
 }
