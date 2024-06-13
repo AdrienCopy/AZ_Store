@@ -1,3 +1,92 @@
-header img {
-  width: 5%;
+body {
+  background: rgb(0, 0, 0);
+  background: -moz-linear-gradient(360deg, rgb(0, 0, 0) 0%, rgb(17, 24, 39) 100%);
+  background: -webkit-linear-gradient(360deg, rgb(0, 0, 0) 0%, rgb(17, 24, 39) 100%);
+  background: linear-gradient(360deg, rgb(0, 0, 0) 0%, rgb(17, 24, 39) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#111827",GradientType=1);
+  color: white;
+}
+
+header {
+  margin: 1% 0;
+  padding: 0;
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+}
+header .logo {
+  width: 15%;
+}
+header .logo p {
+  text-align: center;
+  margin: 0;
+}
+header .logo:after {
+  content: " ";
+  display: block;
+  height: 1px;
+  width: 100px;
+  background: white;
+}
+header .nav {
+  text-align: center;
+  width: 70%;
+}
+header .shopping-login {
+  display: flex;
+  width: 15%;
+}
+header .shopping-login img {
+  width: 10%;
+  padding-right: 2%;
+}
+header .shopping-login p {
+  margin: 0;
+}
+
+main .div-h1-img {
+  margin: 5% 0;
+  display: flex;
+}
+main .div-h1-img :nth-child(2) {
+  display: flex;
+}
+main .div-h1-img :nth-child(2) img {
+  width: 60%;
+}
+main .div-products {
+  margin: 5% 0;
+}
+main .div-products .products {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+main .div-products .products .product-info {
+  width: 20%;
+}
+main .div-products .products .product-info img {
+  width: 20%;
+}
+main .div-opinion {
+  margin: 5% 0;
+  display: flex;
+  text-align: center;
+}
+main .div-opinion section {
+  margin: 0 auto;
+  width: 30%;
+}
+main .div-opinion section img {
+  border-radius: 100px;
+  height: 80px;
+  margin: 20px;
+}
+main .div-opinion section p {
+  text-align: justify;
+}
+
+footer {
+  margin-top: 2%;
+  text-align: center;
 }
