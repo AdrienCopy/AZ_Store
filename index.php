@@ -48,7 +48,7 @@
                 // echo $products[1]["product"];
                 // boucle pour afficher les produits dans la BD
                 foreach($products as $product){
-                    echo '<div class="product-info"><img src="' . $product["image_url"] . '" alt="image of' . $product["product"] . '"><p>' . $product["product"] . '</p><p>' . $product["price"] . '<a href="shopping-cart.php" class ="btn-add-to-card" id= "' . $product["id"] . '">See our store</a></div>';
+                    echo '<div class="product-info"><img src="' . $product["image_url"] . '" alt="image of' . $product["product"] . '"><p>' . $product["product"] . '</p><p>' . $product["price"] . '<a href="shopping-cart.php?idP='. $product["id"] . '" class ="btn-add-to-card" id= "' . $product["id"] . '">See our store</a></div>';
                 }
                 ?>
             </div>
