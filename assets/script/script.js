@@ -34,14 +34,36 @@ zipCode.addEventListener('blur', function (event) {
   }
 });
 
+
+
+
 const main = document.querySelector('main');
 const button = document.getElementById('button');
 const form = document.getElementById('form');
 const message = document.createElement('h2');
 message.textContent = "Thank you for your order";
+const errorMessage = document.createElement('div');
+errorMessage.classList.add('error-message');
+form.appendChild(errorMessage);
 
 button.addEventListener('click', function(event) {
     event.preventDefault();
+    const inputs = form.querySelectorAll('input[required], select[required]');
+    let completed = true;
+
+    inputs.forEach(input => {
+        if (!input.value) {
+            completed = false;
+            input.classList.add('error');
+        } else {
+            input.classList.remove('error');
+        }
+    });
+
+    if (!completed) {
+        errorMessage.textContent = 'Veuillez remplir tous les champs obligatoires.';
+        return;
+    }
 
     // Collecte les données du formulaire
     const formData = new FormData(form);
@@ -64,4 +86,5 @@ button.addEventListener('click', function(event) {
         console.error('Error:', error);
     });
 });
+
 
