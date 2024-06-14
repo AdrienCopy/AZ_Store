@@ -2,14 +2,13 @@
 session_start();
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script type="module" defer src="./assets/script/script.js"></script>
+    <script defer src="./assets/script/script.js"></script>
     <title>AZ Store</title>
 </head>
 <body>
@@ -31,6 +30,7 @@ session_start();
         </div>
 </header>
     <main>
+    <section id="panier">
     <table>
             <tr>
                 <td>image</td>
@@ -103,7 +103,8 @@ session_start();
     showPanier($produitsIndexe);
     ?>
     </table>
-    <form method="POST" id="form" action="">
+    </section>
+    <form method="POST" id="form" action="Checkout.php">
         <label for="first_name">First name: </label><br>
         <input type="text" name="first_name" placeholder="First Name" aria-required="true" required><br>
         <label for="last_name">Last name: </label><br>
