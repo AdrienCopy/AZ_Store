@@ -41,7 +41,11 @@
                 <td>quantity</td>
                 <td>price</td>
             </tr>
-            <?php 
+            <?php  
+            if(!isset($_SESSION['panier'])){
+                echo "<tr><td colspan='6'><h3>Votre panier est vide.</h3></td></tr>";
+            }
+            else{
                 //supprimer les produits
                 //si la variable del existe
                 if(isset($_GET['del'])){
@@ -100,6 +104,7 @@
                         <td colspan='2'>$" . number_format($total, 2) . "</td>
                       </tr>";
             }
+        }
 
             ?>
          </table>
