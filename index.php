@@ -1,5 +1,9 @@
 <?php
-    session_start();
+       session_start();
+       // To read data from the JSON file in PHP
+       $productsJson = file_get_contents('assets/json/products.json');
+       $products = json_decode($productsJson, true);
+       // echo $products[1]["product"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +27,13 @@
         </nav>
         </div>
         <div class="shopping-login">
-            <img src="assets/picture/shopping-cart.svg" alt="image of shopping cart">
+        <a href="shopping-cart.php">
+            <?php
+            if(isset($_SESSION['panier'])){
+                echo array_sum($_SESSION['panier']);
+            }
+            ?>
+            <img src="assets/picture/shopping-cart.svg" alt="image of shopping cart"></a>
             <p>Login</p>
         </div>
     </header>
@@ -38,17 +48,13 @@
                 <h2>nike</h2>
             </section>
         </div>
-        <div class="div-products">
+        <div class="div-products" id="our-products">
             <p>Our last products</p>
             <div class="products">
-                <?php
-                // To read data from the JSON file in PHP
-                $productsJson = file_get_contents('assets/json/products.json');
-                $products = json_decode($productsJson, true);
-                // echo $products[1]["product"];
+            <?php
                 // boucle pour afficher les produits dans la BD
                 foreach($products as $product){
-                    echo '<div class="product-info"><img src="' . $product["image_url"] . '" alt="image of' . $product["product"] . '"><p>' . $product["product"] . '</p><p>' . $product["price"] . '<a href="shopping-cart.php?idP='. $product["id"] . '" class ="btn-add-to-card" id= "' . $product["id"] . '">See our store</a></div>';
+                    echo '<div class="product-info"><img src="' . $product["image_url"] . '" alt="image of' . $product["product"] . '" width ="50px"><p>' . $product["product"] . '</p><p>' . $product["price"] . '<a href="ajout-panier.php?idP='. $product["id"] . '" class ="btn-add-to-card" id= "' . $product["id"] . '">See our store</a></div>';
                 }
                 ?>
             </div>
