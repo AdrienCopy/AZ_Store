@@ -74,7 +74,7 @@ session_start();
                                 <td>{$quantite}</td>
                                 <td>$" . number_format($prix, 2) . "</td>
                                 <td>$" . number_format($totalParProduit, 2) . "</td>
-                                <td><a href='?del={$idProduit}'>Supprimer</a></td>
+                                <!-- <td><a href='?del={$idProduit}'>Supprimer</a></td> -->
                             </tr>";
                             
 
@@ -235,6 +235,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+
 function profil($first_name, $last_name, $email, $adress, $city, $zip_code, $country) {
     $db = new SQLite3('bdd.sqlite');
 
@@ -290,7 +291,9 @@ function profil($first_name, $last_name, $email, $adress, $city, $zip_code, $cou
 
     $db->close();
     exit();
+    
 }
+session_destroy();
 ?>
 <footer>
     <nav>
