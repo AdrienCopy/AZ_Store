@@ -30,6 +30,7 @@ session_start();
         </div>
 </header>
     <main>
+    <section id="panier">
     <table>
             <tr>
                 <td>image</td>
@@ -102,6 +103,7 @@ session_start();
     showPanier($produitsIndexe);
     ?>
     </table>
+    </section>
     <form method="POST" id="form" action="Checkout.php">
         <label for="first_name">First name: </label><br>
         <input type="text" name="first_name" placeholder="First Name" aria-required="true" required><br>

@@ -40,6 +40,7 @@ zipCode.addEventListener('blur', function (event) {
 const main = document.querySelector('main');
 const button = document.getElementById('button');
 const form = document.getElementById('form');
+const panier = document.getElementById('panier');
 const message = document.createElement('h2');
 message.textContent = "Thank you for your order";
 const errorMessage = document.createElement('div');
@@ -80,6 +81,7 @@ button.addEventListener('click', function(event) {
 
         // Affiche un message de confirmation sur la page
         form.style.display = 'none';
+        panier.style.display = 'none';
         main.appendChild(message);
     })
     .catch(error => {
