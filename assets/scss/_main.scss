@@ -1,7 +1,24 @@
 main{
     .div-h1-img{
-        margin: 5% 0;
+        margin: 5% auto;
         display: flex;
+        width: 80%;
+        height: 100%;
+        align-content: center;
+        section {
+            justify-content:space-around;
+            width: 50%;
+            a {
+                text-decoration: none;
+                color: rgb(255, 255, 255);
+                background: rgb(4,134,189);
+                background: linear-gradient(90deg, rgba(4,134,189,1) 0%, rgba(31,61,142,1) 100%);
+                border-radius: 5px;
+                justify-content: center;
+                width: 35%;
+                height: 30px;
+            }
+        }
         :nth-child(2){
             display: flex;
                 img{
@@ -10,11 +27,19 @@ main{
         }
     }
     .div-products{
-        margin: 5% 0;
+        margin: 5% auto;
+        
         .products{
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
+            a {
+                text-decoration: none;
+                color: rgb(255, 255, 255);
+                background-color: #3B82F6;
+                border-radius: 3px;
+                padding: 5%;
+            }
             .product-info{
                 width: 20%;
                 img{
@@ -23,6 +48,8 @@ main{
             }
         }
     }
+ 
+
     .div-opinion{
         margin: 5% 0;
         display: flex;
@@ -39,5 +66,10 @@ main{
                 text-align: justify;
             }
         }
+    }
+    .fontBorder {
+        top: 0px;
+        position:absolute;
+        z-index: -1;
     }
 }

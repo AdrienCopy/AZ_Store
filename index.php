@@ -11,6 +11,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
     <title>Home</title>
 </head>
 <body>
@@ -45,7 +48,7 @@
             </section>
             <section>
                 <img src="assets/picture/shoe_one.png" alt="image of the shoe">
-                <h2>nike</h2>
+                <h2 class="fontBorder">NIKE</h2>
             </section>
         </div>
         <div class="div-products" id="our-products">
@@ -54,7 +57,7 @@
             <?php
                 // boucle pour afficher les produits dans la BD
                 foreach($products as $product){
-                    echo '<div class="product-info"><img src="' . $product["image_url"] . '" alt="image of' . $product["product"] . '" width ="50px"><p>' . $product["product"] . '</p><p>' . $product["price"] . '<a href="ajout-panier.php?idP='. $product["id"] . '" class ="btn-add-to-card" id= "' . $product["id"] . '">See our store</a></div>';
+                    echo '<div class="product-info"><img src="' . $product["image_url"] . '" alt="image of' . $product["product"] . '" width ="50px"><p>' . $product["product"] . '</p><p>' . $product["price"] . ' $</p><a href="ajout-panier.php?idP='. $product["id"] . '" class ="btn-add-to-card" id= "' . $product["id"] . '">add to card</a></div>';
                 }
                 ?>
             </div>

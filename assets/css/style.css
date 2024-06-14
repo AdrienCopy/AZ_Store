@@ -1,7 +1,5 @@
 body {
   background: rgb(0, 0, 0);
-  background: -moz-linear-gradient(360deg, rgb(0, 0, 0) 0%, rgb(17, 24, 39) 100%);
-  background: -webkit-linear-gradient(360deg, rgb(0, 0, 0) 0%, rgb(17, 24, 39) 100%);
   background: linear-gradient(360deg, rgb(0, 0, 0) 0%, rgb(17, 24, 39) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#111827",GradientType=1);
   color: white;
@@ -10,9 +8,11 @@ body {
 header {
   margin: 1% 0;
   padding: 0;
-  height: 20%;
+  height: 50px;
   display: flex;
   justify-content: space-between;
+  border-bottom: solid 0.3px;
+  border-color: rgb(147, 147, 147);
 }
 header .logo {
   width: 15%;
@@ -21,16 +21,14 @@ header .logo p {
   text-align: center;
   margin: 0;
 }
-header .logo:after {
-  content: " ";
-  display: block;
-  height: 1px;
-  width: 100px;
-  background: white;
-}
 header .nav {
   text-align: center;
   width: 70%;
+}
+header .nav a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  margin: 5px;
 }
 header .shopping-login {
   display: flex;
@@ -45,8 +43,25 @@ header .shopping-login p {
 }
 
 main .div-h1-img {
-  margin: 5% 0;
+  margin: 5% auto;
   display: flex;
+  width: 80%;
+  height: 100%;
+  align-content: center;
+}
+main .div-h1-img section {
+  justify-content: space-around;
+  width: 50%;
+}
+main .div-h1-img section a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  background: rgb(4, 134, 189);
+  background: linear-gradient(90deg, rgb(4, 134, 189) 0%, rgb(31, 61, 142) 100%);
+  border-radius: 5px;
+  justify-content: center;
+  width: 35%;
+  height: 30px;
 }
 main .div-h1-img :nth-child(2) {
   display: flex;
@@ -55,12 +70,19 @@ main .div-h1-img :nth-child(2) img {
   width: 60%;
 }
 main .div-products {
-  margin: 5% 0;
+  margin: 5% auto;
 }
 main .div-products .products {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+}
+main .div-products .products a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  background-color: #3B82F6;
+  border-radius: 3px;
+  padding: 5%;
 }
 main .div-products .products .product-info {
   width: 20%;
@@ -85,8 +107,38 @@ main .div-opinion section img {
 main .div-opinion section p {
   text-align: justify;
 }
+main .fontBorder {
+  top: 0px;
+  position: absolute;
+  z-index: -1;
+}
 
 footer {
   margin-top: 2%;
   text-align: center;
+}
+
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.fontBorder {
+  -webkit-text-stroke: 0.3px white; /* width and color */
+  font-family: arial;
+  color: rgb(17, 24, 39);
+  font-size: 150pt;
+}
+
+.div-h1-img section {
+  font-size: 35px;
+  text-transform: uppercase;
+}
+.div-h1-img section a {
+  text-transform: none;
+  font-size: 15px;
+}
+.div-h1-img section strong {
+  color: #2663EB;
 }
