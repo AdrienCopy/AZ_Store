@@ -49,7 +49,27 @@
                     //suppression
                     unset($_SESSION['panier'][$id_del]);
                 }
-        
+
+                // augmenter la quantité des produits 
+                //si la variable add existe
+                if(isset($_GET['add'])){
+                    $id_add  = $_GET['add'];
+                    // augmenter
+                    $session = $_SESSION['panier'][$id_add]++; 
+                }
+
+                // diminuer la quantité des produits
+                //si la variable minus existe
+                if(isset($_GET['minus'])){
+                    $id_minus  = $_GET['minus'];
+                    // diminuer
+                    $session = $_SESSION['panier'][$id_minus]--;
+                    //suppression
+                    if($_SESSION['panier'][$id_minus] == 0){
+                        unset($_SESSION['panier'][$id_minus]);
+                    }
+                }
+
                 $total = 0 ;
                 $tousIdProduit = array_keys($_SESSION['panier']);
             //s'il n'y a aucune clé dans le tableau
@@ -67,11 +87,13 @@
                     //calculer le total ( prix unitaire * quantité) 
                     //et aditionner chaque résutats a chaque tour de boucle
                     echo'<tr>
-                    <td><img src='. $products[$idProduit]['image_url'] . 'alt="'. $nomProduit .'"width="50"></td>
+                    <td><img src="'. $products[$idProduit]['image_url'] . '" alt="'. $nomProduit .'"width="50"></td>
                     <td>'. $nomProduit. '</td>
                     <td>'. $quantite . '</td>
                     <td>' . number_format($prix, 2) . '</td>
-                    <td><a href="shopping-cart.php?del=' .$idProduit. '"><img src="./assets/picture/delete.png" width = "30"></a></td>';
+                    <td><a href="shopping-cart.php?add=' .$idProduit. '"><img src="assets/picture/plus.png" width = "30"></a></td>
+                    <td><a href="shopping-cart.php?minus=' .$idProduit. '"><img src="assets/picture/minus.png" width = "30"></a></td>
+                    <td><a href="shopping-cart.php?del=' .$idProduit. '"><img src="assets/picture/delete.png" width = "30"></a></td>';
                 }
                 echo "<tr>
                         <td colspan='4'>Total</td>

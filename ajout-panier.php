@@ -18,7 +18,6 @@
             // si le produit est déjà dans le panier
             //Représente la quantité 
             $session = $_SESSION['panier'][$id]++; 
-            echo $session;
 
         }
         else {
