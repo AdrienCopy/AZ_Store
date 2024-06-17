@@ -23,22 +23,38 @@ header{
             display: block;
             height: 1px;
             width: 100px;
-            background: white;
+            color: white;
         }
     }
     .nav{
         text-align: center;
         width: 70%;
+        a{
+            text-decoration: none;
+            color: white;
+            margin-right: 5px;
+            text-align: center;
+        }
     }
     .shopping-login{
         display: flex;
-        width: 15%;
+        flex-direction: row;
+        width: 10%;
+        text-align: center;
         img{
-            width: 10%; 
-            padding-right: 2%;
+            width: 15%;
+            margin-right: 5px;
+        }
+        i{
+            margin-right: 5px;
+        }
+        a{
+            text-decoration: none;
         }
         p{
-            margin: 0;
+            margin: 1% 0;
+            font-size: 18px;
+            margin-top: 1px;
         }
     }
 }

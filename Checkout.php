@@ -26,7 +26,7 @@ session_start();
         </nav>
         </div>
         <div class="shopping-login">
-            <img src="assets/picture/shopping-cart.svg" alt="image of shopping cart">
+            <i class="fas fa-cart-arrow-down" style="color: #f5fffe;"></i>
             <p>Login</p>
         </div>
 </header>

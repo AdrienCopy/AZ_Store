@@ -1,0 +1,135 @@
+main{
+    .div-h1-img{
+        margin: 5% 5%;
+        display: flex;
+        .h1{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            margin-left: 90px;
+                h1{
+                    text-transform: uppercase;
+                    font-size: 50px;
+
+                    strong{
+                        color: blue;
+                    }
+                }
+                button{
+                    background-color: blue;
+                    text-align: left;
+                    padding: 10px;
+                    color: white;
+                    border: none;
+                    border-radius: 0.5rem;
+                }
+            }
+            .h2{
+                display: flex;
+                flex-direction: row;
+                margin-right: 20px;
+                h2{
+                    position: absolute;
+                    top: 30%;
+                    left: 65%;
+                    transform: translate(-50%, -50%);
+                    color: rgba(232, 226, 226, 0.5); 
+                    z-index: 1;
+                    font-weight: bold;
+                    letter-spacing: 10px;
+                    text-transform: uppercase;
+                    font-size: 200px;
+                    justify-content: center;
+
+                }
+                img{
+                    // width: 40%;
+                    // height: 60%;
+                    // margin-right: -350px;
+                    width: 70%;
+                    display: block;
+                    position: relative;
+                    z-index: 2;
+                    margin-left: 65px;
+                }
+            }
+    }
+    .div-products{
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        // margin-left: 80px;
+        margin-bottom: 40px;
+        h3{
+            margin-left: 80px;
+            margin-bottom: 40px;
+            strong{
+                color: blue;
+            }
+        }
+        .products{
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 20px;
+            .product-info{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                width: 40%;
+                img{
+                    width: 40%; 
+                    margin-left: 20px;
+                }
+                p{
+                    font-size: 18px;
+                }
+                button{
+                    margin-left: 20px;
+                    padding: 5px;
+                    background-color: blue;
+                    border: none;
+                    color: white;
+                    border-radius: 0.5rem;
+                }
+            }
+        }
+    }
+    .shoe{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        // margin-left: 60px;
+        // margin-right: 60px;
+        img{
+            width: 25%;
+
+        }
+        h2{
+            font-size: 50px;
+            text-transform: uppercase;
+            strong{
+                color: blue;
+            }
+        }
+    }
+    .div-opinion{
+        margin: 5% 0;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        section{
+            margin: 10px;
+            width: 20%;
+            img {
+                border-radius: 100px;
+                height: 80px;
+                margin: 20px;
+            }
+            p{
+                text-align: justify;
+            }
+        }
+    }
+}

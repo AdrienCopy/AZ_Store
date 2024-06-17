@@ -2,3 +2,9 @@ footer {
   margin-top: 2%;
   text-align: center;
 }
+footer nav a {
+  text-decoration: none;
+  color: white;
+  margin-right: 5px;
+  margin-bottom: 50px;
+}
